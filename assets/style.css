@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	font-family: 'Poppins', sans-serif;
+}
+
+header {
+	background-color: white;
+	width: 100%;
+	height: 10vh;
+}
+
+sashjg {
+	color: white;
+}
+
+header .content {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header .left,
+header .input {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+header img {
+	width: 80px;
+	margin-right: 1rem;
+}
+
+header select {
+	width: 100px;
+	padding: 0.2rem 0.5rem;
+	font-size: 1rem;
+}
+
+header button {
+	margin-inline: 1.5rem;
+	border: 2px solid #005000;
+	background-color: #005000;
+	font-size: 1rem;
+	color: white;
+	padding: 0.5rem 1.5rem;
+	border-radius: 50px;
+	transition: all 300ms;
+}
+
+header button:hover {
+	background-color: #00aa00;
+	border: 2px solid #008000;
+	box-shadow: 0 0 10px #008000;
+	color: #333333
+}
+
+main {
+	width: 100%;
+	height: 80vh;
+	background-color: rgb(181, 149, 202);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+main .grid {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	opacity: 0;
+	border: 3px solid rgb(100, 0, 170);
+}
+
+main .cell {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid rgb(100, 0, 170);
+	cursor: pointer;
+}
+
+main .selected {
+	background-color: rgb(255, 222, 112);
+}
+
+footer {
+	width: 100%;
+	height: 10vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+footer .content {
+	height: 10vh;
+}

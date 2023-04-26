@@ -18,10 +18,6 @@ header {
 	height: 10vh;
 }
 
-sashjg {
-	color: white;
-}
-
 header .content {
 	width: 100%;
 	height: 100%;
@@ -75,12 +71,17 @@ main {
 	justify-content: flex-start;
 	align-items: center;
 	padding-top: 2rem;
+	position: relative;
 }
 
 main .start {
 	font-size: 2rem;
 	font-weight: bold;
-	display: block;
+	/* display: block; */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 main .grid {
@@ -103,7 +104,7 @@ main .cell {
 }
 
 main .selected {
-	background-color: rgb(255, 222, 112);
+	background-color: rgb(50, 120, 255);
 }
 
 main .mine {

@@ -3,7 +3,7 @@ const playBtn = document.querySelector("#play");
 const grid = document.querySelector(".grid");
 const start = document.querySelector(".start");
 const message = document.querySelector(".message");
-let endGame = false;
+let endGame;
 let totalCells = 0;
 
 // defines the approx centainer width and height in pixels
@@ -41,14 +41,12 @@ playBtn.addEventListener("click", function () {
 		cellArray[i].innerHTML = i + 1;
 
 		cellArray[i].addEventListener("click", function () {
-			console.log(endGame);
 			checkBomb(i, minesArray, cellArray);
 			if (!endGame) {
 				// no points if the cell has already been clicked
 				if (!cellArray[i].classList.contains("selected")) {
 					totalPoints++;
 				}
-				console.log(`Hai cliccato sulla casella ${i + 1}`);
 				cellArray[i].classList.add("selected");
 			} else {
 				message.style.visibility = 1;

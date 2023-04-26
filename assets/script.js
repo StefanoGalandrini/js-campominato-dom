@@ -16,13 +16,15 @@ playBtn.addEventListener("click", function () {
 	start.innerHTML = "";
 	grid.innerHTML = "";
 	message.innerHTML = "";
+	grid.style.pointerEvents = "auto";
+
 	// Variable for score keeping and mines numbers
 	const minesArray = [];
 	let totalPoints = 0;
 	const difficultyLevel = document.querySelector("#difficulty").value;
 
 	// build grid creating html elements
-	gridDimension(difficultyLevel);
+	totalCells = gridDimension(difficultyLevel);
 	let cellCount = totalCells;
 	let cellRow = Math.sqrt(totalCells);
 	const dimCell = cellDimension(cellRow);
@@ -33,6 +35,7 @@ playBtn.addEventListener("click", function () {
 
 	const cellArray = [];
 	endGame = false;
+
 	for (let i = 0; i < cellCount; i++) {
 		cellArray[i] = document.createElement("div");
 		cellArray[i].classList.add("cell");
@@ -41,6 +44,7 @@ playBtn.addEventListener("click", function () {
 		cellArray[i].innerHTML = i + 1;
 
 		cellArray[i].addEventListener("click", function () {
+			console.log(endGame);
 			checkBomb(i, minesArray, cellArray);
 			if (!endGame) {
 				console.log(`Hai cliccato sulla casella ${i + 1}`);
@@ -49,6 +53,7 @@ playBtn.addEventListener("click", function () {
 			} else {
 				message.style.visibility = 1;
 				message.innerHTML = `HAI PERSO.<br> Punteggio: <strong>${totalPoints}</strong>`;
+				grid.style.pointerEvents = "none";
 			}
 		});
 		grid.appendChild(cellArray[i]);
@@ -66,20 +71,21 @@ playBtn.addEventListener("click", function () {
 
 function gridDimension(level) {
 	// define grid dimension based on selection
+	let total;
 	switch (level) {
 		case "1":
-			totalCells = 100;
+			total = 100;
 			break;
 		case "2":
-			totalCells = 81;
+			total = 81;
 			break;
 		case "3":
-			totalCells = 49;
+			total = 49;
 			break;
 		default:
-			totalCells = 100;
+			total = 100;
 	}
-	return totalCells;
+	return total;
 }
 
 function cellDimension(dim) {
@@ -111,7 +117,7 @@ function checkBomb(index, minesArray, cellArray) {
 		}
 		endGame = true;
 	} else {
-		cellArray[index].classList.toggle("selected");
+		cellArray[index].classList.add("selected");
 		endGame = false;
 	}
 }

@@ -5,6 +5,10 @@ const grid = document.querySelector(".grid");
 // defines the approx centainer width and height in pixels
 const baseContainerDim = 600;
 
+// Variable for score keeping and mines numbers
+let totalPoints = 0;
+const minesArray = [];
+
 // add event listener to play button
 // all code will be inside that
 playBtn.addEventListener("click", function () {
@@ -17,6 +21,9 @@ playBtn.addEventListener("click", function () {
 	let cellCount = totalCells;
 	let cellRow = Math.sqrt(totalCells);
 	const dimCell = cellDimension(cellRow);
+
+	// generate Array with 16 random numbers for mines
+	createMinesArray(1, totalCells, 16, minesArray);
 
 	for (let i = 1; i <= cellCount; i++) {
 		const cell = document.createElement("div");
@@ -65,4 +72,21 @@ function cellDimension(dim) {
 	// small empty spaces between cells and container
 	const dimCell = Math.round((baseContainerDim - 2 * 3) / dim);
 	return dimCell;
+}
+
+function createMinesArray(min, max, mines, minesArray) {
+	let minesNum;
+	const array = [];
+
+	let i = 1;
+	while (i <= mines) {
+		minesNum = Math.floor(Math.random() * (max - min + 1)) + min;
+		if (!array.includes(minesNum)) {
+			array.push(minesNum);
+			i++;
+		}
+		minesArray = array.sort((a, b) => a - b);
+		console.log("i: " + i, minesArray);
+	}
+	return minesArray;
 }

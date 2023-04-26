@@ -68,9 +68,10 @@ header button:hover {
 
 main {
 	width: 100%;
-	height: 80vh;
+	height: 84vh;
 	background-color: rgb(181, 149, 202);
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
@@ -97,9 +98,16 @@ main .selected {
 	background-color: rgb(255, 222, 112);
 }
 
+main .message {
+	font-size: 1.5rem;
+	font-weight: normal;
+	margin-top: 2rem;
+	visibility: hidden;
+}
+
 footer {
 	width: 100%;
-	height: 10vh;
+	height: 6vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;

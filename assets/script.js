@@ -7,12 +7,13 @@ const baseContainerDim = 600;
 
 // Variable for score keeping and mines numbers
 let totalPoints = 0;
-const minesArray = [];
+let totalCells = 0;
 
 // add event listener to play button
 // all code will be inside that
 playBtn.addEventListener("click", function () {
 	grid.innerHTML = "";
+	const minesArray = [];
 
 	const difficultyLevel = document.querySelector("#difficulty").value;
 
@@ -25,19 +26,28 @@ playBtn.addEventListener("click", function () {
 	// generate Array with 16 random numbers for mines
 	createMinesArray(1, totalCells, 16, minesArray);
 
-	for (let i = 1; i <= cellCount; i++) {
-		const cell = document.createElement("div");
-		cell.classList.add("cell");
-		cell.style.width = `${dimCell}px`;
-		cell.style.height = `${dimCell}px`;
-		cell.innerHTML = i;
+	const cellArray = [];
+	for (let i = 0; i < cellCount; i++) {
+		cellArray[i] = document.createElement("div");
+		cellArray[i].classList.add("cell");
+		cellArray[i].style.width = `${dimCell}px`;
+		cellArray[i].style.height = `${dimCell}px`;
+		cellArray[i].innerHTML = i;
 
-		cell.addEventListener("click", function () {
-			cell.classList.toggle("selected");
+		cellArray[i].addEventListener("click", function () {
 			console.log(`Hai cliccato sulla casella ${i}`);
+
+			if (minesArray.includes(i)) {
+				for (let i = 0; i < minesArray.length; i++) {
+					cellArray[minesArray[i]].classList.add("mine");
+				}
+			} else {
+				cellArray[i].classList.toggle("selected");
+				totalPoints++;
+			}
 		});
 
-		grid.appendChild(cell);
+		grid.appendChild(cellArray[i]);
 	}
 	/*	dimensioning container to an integer
 		plus twice the border
@@ -74,19 +84,17 @@ function cellDimension(dim) {
 	return dimCell;
 }
 
-function createMinesArray(min, max, mines, minesArray) {
+function createMinesArray(min, max, mines, minesArr) {
 	let minesNum;
-	const array = [];
 
 	let i = 1;
 	while (i <= mines) {
 		minesNum = Math.floor(Math.random() * (max - min + 1)) + min;
-		if (!array.includes(minesNum)) {
-			array.push(minesNum);
+		if (!minesArr.includes(minesNum)) {
+			minesArr.push(minesNum);
 			i++;
 		}
-		minesArray = array.sort((a, b) => a - b);
-		console.log("i: " + i, minesArray);
 	}
-	return minesArray;
+	const sortedArray = minesArr.sort((a, b) => a - b);
+	return sortedArray;
 }

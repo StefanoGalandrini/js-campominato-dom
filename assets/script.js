@@ -25,7 +25,7 @@ playBtn.addEventListener("click", function () {
 
 	// build grid creating html elements
 	totalCells = gridDimension(difficultyLevel);
-	let cellCount = totalCells;
+	//let cellCount = totalCells;
 	let cellRow = Math.sqrt(totalCells);
 	const dimCell = cellDimension(cellRow);
 
@@ -36,7 +36,7 @@ playBtn.addEventListener("click", function () {
 	const cellArray = [];
 	endGame = false;
 
-	for (let i = 0; i < cellCount; i++) {
+	for (let i = 0; i < totalCells; i++) {
 		cellArray[i] = document.createElement("div");
 		cellArray[i].classList.add("cell");
 		cellArray[i].style.width = `${dimCell}px`;
@@ -47,9 +47,12 @@ playBtn.addEventListener("click", function () {
 			console.log(endGame);
 			checkBomb(i, minesArray, cellArray);
 			if (!endGame) {
+				// no points if the cell has already been clicked
+				if (!cellArray[i].classList.contains("selected")) {
+					totalPoints++;
+				}
 				console.log(`Hai cliccato sulla casella ${i + 1}`);
-				totalPoints++;
-				console.log(totalPoints);
+				cellArray[i].classList.add("selected");
 			} else {
 				message.style.visibility = 1;
 				message.innerHTML = `HAI PERSO.<br> Punteggio: <strong>${totalPoints}</strong>`;
@@ -117,7 +120,6 @@ function checkBomb(index, minesArray, cellArray) {
 		}
 		endGame = true;
 	} else {
-		cellArray[index].classList.add("selected");
 		endGame = false;
 	}
 }

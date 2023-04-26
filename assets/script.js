@@ -2,22 +2,23 @@
 const playBtn = document.querySelector("#play");
 const grid = document.querySelector(".grid");
 const start = document.querySelector(".start");
+const message = document.querySelector(".message");
 let endGame = false;
+let totalCells = 0;
 
 // defines the approx centainer width and height in pixels
 const baseContainerDim = 600;
 
-// Variable for score keeping and mines numbers
-let totalCells = 0;
-
 // add event listener to play button
 // all code will be inside that
 playBtn.addEventListener("click", function () {
+	// reset grid
 	start.innerHTML = "";
 	grid.innerHTML = "";
+	message.innerHTML = "";
+	// Variable for score keeping and mines numbers
 	const minesArray = [];
 	let totalPoints = 0;
-
 	const difficultyLevel = document.querySelector("#difficulty").value;
 
 	// build grid creating html elements
@@ -31,6 +32,7 @@ playBtn.addEventListener("click", function () {
 	console.log(minesArray);
 
 	const cellArray = [];
+	endGame = false;
 	for (let i = 0; i < cellCount; i++) {
 		cellArray[i] = document.createElement("div");
 		cellArray[i].classList.add("cell");
@@ -39,22 +41,28 @@ playBtn.addEventListener("click", function () {
 		cellArray[i].innerHTML = i + 1;
 
 		cellArray[i].addEventListener("click", function () {
-			console.log(`Hai cliccato sulla casella ${i + 1}`);
 			checkBomb(i, minesArray, cellArray);
-			totalPoints++;
-			console.log(endGame, totalPoints);
+			if (!endGame) {
+				console.log(`Hai cliccato sulla casella ${i + 1}`);
+				totalPoints++;
+				console.log(totalPoints);
+			} else {
+				message.style.visibility = 1;
+				message.innerHTML = `HAI PERSO.<br> Punteggio: <strong>${totalPoints}</strong>`;
+			}
 		});
-
 		grid.appendChild(cellArray[i]);
 	}
 	/*	dimensioning container to an integer plus twice the border
-		to prevent small empty spaces between cells and container
-		with some widths and number of cells */
+	to prevent small empty spaces between cells and container
+	with some widths and number of cells */
 	dimContainer = dimCell * cellRow + 6;
 	grid.style.opacity = 1;
 	grid.style.maxWidth = `${dimContainer}px`;
 	grid.style.maxHeight = `${dimContainer}px`;
 });
+
+// FUNCTIONS DEFINITION
 
 function gridDimension(level) {
 	// define grid dimension based on selection

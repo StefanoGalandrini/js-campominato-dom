@@ -114,7 +114,7 @@ main .message {
 	font-size: 1.5rem;
 	font-weight: normal;
 	margin-top: 2rem;
-	visibility: hidden;
+	text-align: center;
 }
 
 footer {

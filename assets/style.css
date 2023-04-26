@@ -69,11 +69,17 @@ header button:hover {
 main {
 	width: 100%;
 	height: 84vh;
-	background-color: rgb(181, 149, 202);
+	background-color: rgb(199, 177, 214);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+main .start {
+	font-size: 2rem;
+	font-weight: bold;
+	display: block;
 }
 
 main .grid {
@@ -92,6 +98,7 @@ main .cell {
 	align-items: center;
 	border: 1px solid rgb(100, 0, 170);
 	cursor: pointer;
+	user-select: none;
 }
 
 main .selected {
@@ -100,6 +107,7 @@ main .selected {
 
 main .mine {
 	background-color: rgb(150, 0, 0);
+	color: white;
 }
 
 main .message {

@@ -65,7 +65,7 @@ header button:hover {
 main {
 	width: 100%;
 	height: 84vh;
-	background-color: rgb(236, 212, 255);
+	background-color: rgb(230, 210, 255);
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -128,5 +128,5 @@ footer {
 }
 
 footer .content {
-	height: 10vh;
+	height: 6vh;
 }

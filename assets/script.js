@@ -25,14 +25,11 @@ playBtn.addEventListener("click", function () {
 
 	// build grid creating html elements
 	totalCells = gridDimension(difficultyLevel);
-	//let cellCount = totalCells;
-	let cellRow = Math.sqrt(totalCells);
+	const cellRow = Math.sqrt(totalCells);
 	const dimCell = cellDimension(cellRow);
 
 	// generate Array with 16 random numbers for mines
-	createMinesArray(1, totalCells, 16, minesArray);
-	console.log(minesArray);
-
+	const sortedArray = createMinesArray(1, totalCells, 16, minesArray);
 	const cellArray = [];
 	endGame = false;
 
@@ -94,13 +91,12 @@ function gridDimension(level) {
 function cellDimension(dim) {
 	//value rounded to integer to prevent
 	// small empty spaces between cells and container
-	const dimCell = Math.round((baseContainerDim - 2 * 3) / dim);
-	return dimCell;
+	const dimension = Math.round((baseContainerDim - 2 * 3) / dim);
+	return dimension;
 }
 
 function createMinesArray(min, max, mines, minesArr) {
 	let minesNum;
-
 	let i = 1;
 	while (i <= mines) {
 		minesNum = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -109,8 +105,8 @@ function createMinesArray(min, max, mines, minesArr) {
 			i++;
 		}
 	}
-	const sortedArray = minesArr.sort((a, b) => a - b);
-	return sortedArray;
+	const sorted = minesArr.sort((a, b) => a - b);
+	return sorted;
 }
 
 function checkBomb(index, minesArray, cellArray) {
